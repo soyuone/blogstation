@@ -16,6 +16,7 @@
 	<properties>
 		<springframework.version>4.2.0.RELEASE</springframework.version>
 		<mybatis.version>3.4.2</mybatis.version>
+		<mybatis-spring.version>1.3.1</mybatis-spring.version>
 	</properties>
 
 	<!-- dependencies元素用于定义依赖关系 -->
@@ -114,11 +115,30 @@
 			<version>${mybatis.version}</version>
 		</dependency>
 
+		<!-- mybatis-spring -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis-spring.version}</version>
+		</dependency>
+
 		<!-- mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.18</version>
+		</dependency>
+
+		<!-- c3p0 -->
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.5.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>mchange-commons-java</artifactId>
+			<version>0.2.11</version>
 		</dependency>
 
 		<!-- test -->
