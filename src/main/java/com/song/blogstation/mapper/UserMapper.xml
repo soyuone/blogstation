@@ -25,4 +25,8 @@
 		WHERE
 		id=#{id}
 	</update>
+
+	<delete id="deleteUserTradition">
+		DELETE FROM tb_user WHERE id=#{id}
+	</delete>
 </mapper>

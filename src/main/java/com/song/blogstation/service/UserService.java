@@ -69,4 +69,28 @@ public interface UserService {
 	 */
 	public Map<String, Object> updateUserAnnotation(UserBean user, Integer id) throws Exception;
 
+	/**
+	 * <p>
+	 * Description:[删除用户-传统方式]
+	 * </p>
+	 * Created by [SO] [2017年2月19日] Midified by [修改人] [修改时间]
+	 *
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> deleteUserTradition(Integer id) throws Exception;
+
+	/**
+	 * <p>
+	 * Description:[删除用户-注解方式]
+	 * </p>
+	 * Created by [SO] [2017年2月19日] Midified by [修改人] [修改时间]
+	 *
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> deleteUserAnnotation(Integer id) throws Exception;
+
 }

@@ -94,4 +94,36 @@ public class UserServiceImpl implements UserService {
 		return resultMap;
 	}
 
+	@Override
+	public Map<String, Object> deleteUserTradition(Integer id) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		if (um.deleteUserTradition(id) > 0) {
+			// 人为制造异常，验证事务回滚
+			// int a = 2/0;
+			resultMap.put("code", 200);
+			resultMap.put("result", "使用传统方式删除用户成功");
+		}
+		else {
+			resultMap.put("code", 500);
+			resultMap.put("result", "使用传统方式删除用户失败");
+		}
+		return resultMap;
+	}
+
+	@Override
+	public Map<String, Object> deleteUserAnnotation(Integer id) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		if (um.deleteUserAnnotation(id) > 0) {
+			// 人为制造异常，验证事务回滚
+			// int a = 2/0;
+			resultMap.put("code", 200);
+			resultMap.put("result", "使用注解方式删除用户成功");
+		}
+		else {
+			resultMap.put("code", 500);
+			resultMap.put("result", "使用注解方式删除用户失败");
+		}
+		return resultMap;
+	}
+
 }

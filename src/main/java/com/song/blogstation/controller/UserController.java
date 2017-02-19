@@ -163,4 +163,59 @@ public class UserController {
 		return resultMap;
 	}
 
+	/**
+	 * <p>
+	 * Description:[删除用户-传统方式]
+	 * </p>
+	 * Created by [songyushi] [2017年2月17日] Midified by [修改人] [修改时间]
+	 *
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/delteuser/tradition", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteUserTradition(HttpServletRequest request) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		// 接收参数
+		String id = request.getParameter("id");
+		try {
+			// 修改
+			resultMap = userService.deleteUserTradition(Integer.parseInt(id));
+		}
+		catch (Exception e) {
+			log.error(e.getLocalizedMessage(), e);
+			resultMap.put("code", 500);
+			resultMap.put("result", "使用传统方式删除用户异常，可能是网络原因");
+		}
+		return resultMap;
+	}
+
+	/**
+	 * <p>
+	 * Description:[删除用户-注解方式]
+	 * </p>
+	 * Created by [songyushi] [2017年2月17日] Midified by [修改人] [修改时间]
+	 *
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/deleteuser/annotation", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteUserAnnotation(HttpServletRequest request) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		// 接收参数
+		String id = request.getParameter("id");
+		try {
+			// 修改
+			resultMap = userService.deleteUserAnnotation(Integer.parseInt(id));
+		}
+		catch (Exception e) {
+			log.error(e.getLocalizedMessage(), e);
+			resultMap.put("code", 500);
+			resultMap.put("result", "使用注解方式删除用户异常，可能是网络原因");
+		}
+		return resultMap;
+	}
 }

@@ -1,5 +1,6 @@
 package com.song.blogstation.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
@@ -73,4 +74,26 @@ public interface UserMapper {
 	@Update(" UPDATE tb_user SET username=#{user.username},password=#{user.password},account=#{user.account} WHERE id=#{id} ")
 	public int updateUserAnnotation(@Param("user") UserBean user, @Param("id") Integer id) throws Exception;
 
+	/**
+	 * <p>
+	 * Description:[删除用户-传统方式]
+	 * </p>
+	 * Created by [SO] [2017年2月19日] Midified by [修改人] [修改时间]
+	 *
+	 * @param id
+	 * @return
+	 */
+	public int deleteUserTradition(@Param("id") Integer id);
+
+	/**
+	 * <p>
+	 * Description:[删除用户-注解方式]
+	 * </p>
+	 * Created by [SO] [2017年2月19日] Midified by [修改人] [修改时间]
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Delete(" DELETE FROM tb_user WHERE id=#{id} ")
+	public int deleteUserAnnotation(@Param("id") Integer id);
 }
