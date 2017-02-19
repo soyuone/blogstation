@@ -103,10 +103,12 @@
 	</tx:advice>
 
 	<!-- 只对业务逻辑层实施事务 -->
+	<!-- execution表达式:第一个*表示返回类型（*表示不限返回类型）,包名（..表示当前包及当前包的所有子孙包）,第二个*表示类名（*表示不限类名） -->
+	<!-- 第三个*表示方法名（*表示不限方法名）,括号中的..表示方法的参数（..表示任何参数，不限参数类型和个数） -->
 	<aop:config expose-proxy="true">
 		<!-- 定义一个切入点pointcut->txPointcut匹配*包下所有方法的执行 -->
 		<aop:pointcut id="txPointcut"
-			expression="execution(* com.song.blogstation.service.*.*(..))" />
+			expression="execution(* com.song.blogstation.service..*.*(..))" />
 		<!-- 指定在txPointcut切入点应用txAdvice事务增强处理 -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
 	</aop:config>
