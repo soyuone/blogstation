@@ -4,6 +4,9 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.song.blogstation.beans.UserBean;
@@ -96,4 +99,30 @@ public interface UserMapper {
 	 */
 	@Delete(" DELETE FROM tb_user WHERE id=#{id} ")
 	public int deleteUserAnnotation(@Param("id") Integer id);
+
+	/**
+	 * <p>
+	 * Description:[根据ID查询用户-传统方式]
+	 * </p>
+	 * Created by [SO] [2017年2月19日] Midified by [修改人] [修改时间]
+	 *
+	 * @param id
+	 * @return
+	 */
+	public UserBean getUserByIdTradition(@Param("id") Integer id);
+
+	/**
+	 * <p>
+	 * Description:[根据ID查询用户-注解方式]
+	 * </p>
+	 * Created by [SO] [2017年2月19日] Midified by [修改人] [修改时间]
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Select(" SELECT * FROM tb_user WHERE id=#{id} ")
+	@Results({
+		@Result(),
+	})
+	public UserBean getUserByIdAnnotation(@Param("id") Integer id);
 }
