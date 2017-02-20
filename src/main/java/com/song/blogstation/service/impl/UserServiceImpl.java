@@ -203,4 +203,53 @@ public class UserServiceImpl implements UserService {
 		return resultMap;
 	}
 
+	@Override
+	public Map<String, Object> insertBatchUser(List<UserBean> users) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		if (um.batchInsertUser(users) > 0) {
+			// 人为制造异常，验证事务回滚
+			// int a = 2/0;
+			resultMap.put("code", 200);
+			resultMap.put("result", "批量添加用户成功");
+		}
+		else {
+			resultMap.put("code", 500);
+			resultMap.put("result", "批量添加用户失败");
+		}
+		return resultMap;
+	}
+
+	@Override
+	public Map<String, Object> deleteBatchUser(List<Integer> ids) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		if (um.batchDeleteUser(ids) > 0) {
+			// 人为制造异常，验证事务回滚
+			// int a = 2/0;
+			resultMap.put("code", 200);
+			resultMap.put("result", "批量删除用户成功");
+		}
+		else {
+			resultMap.put("code", 500);
+			resultMap.put("result", "批量删除用户失败");
+		}
+		return resultMap;
+	}
+
+	@Override
+	public Map<String, Object> getUserByLike(String username) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<UserBean> users = um.getUserByLike(username);
+		if (null != users && users.size() > 0) {
+			resultMap.put("code", 200);
+			resultMap.put("result", "模糊查询用户成功");
+			resultMap.put("data", users);
+		}
+		else {
+			resultMap.put("code", 500);
+			resultMap.put("result", "没有对应的用户信息，请先添加");
+			resultMap.put("data", users);
+		}
+		return resultMap;
+	}
+
 }

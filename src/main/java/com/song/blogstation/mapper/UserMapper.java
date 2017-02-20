@@ -151,4 +151,38 @@ public interface UserMapper {
 	@Select(" SELECT * FROM tb_user ")
 	@ResultMap("userMap")
 	public List<UserBean> getAllUserAccountAnnotation();
+
+	/**
+	 * <p>
+	 * Description:[批量添加用户]
+	 * </p>
+	 * Created by [songyushi] [2017年2月20日] Midified by [修改人] [修改时间]
+	 *
+	 * @param users
+	 * @return
+	 */
+	public int batchInsertUser(@Param("users") List<UserBean> users);
+
+	/**
+	 * <p>
+	 * Description:[批量删除用户]
+	 * </p>
+	 * Created by [songyushi] [2017年2月20日] Midified by [修改人] [修改时间]
+	 *
+	 * @param ids
+	 * @return
+	 */
+	public int batchDeleteUser(@Param("ids") List<Integer> ids);
+
+	/**
+	 * <p>
+	 * Description:[根据用户名模糊查询用户]
+	 * </p>
+	 * Created by [songyushi] [2017年2月20日] Midified by [修改人] [修改时间]
+	 *
+	 * @param username
+	 * @return
+	 */
+	public List<UserBean> getUserByLike(@Param("un") String username);
+
 }

@@ -42,4 +42,26 @@
 		SELECT * FROM
 		tb_user
 	</select>
+
+	<insert id="batchInsertUser" parameterType="java.util.List">
+		INSERT INTO tb_user VALUES
+		<foreach collection="users" item="user" separator=",">
+			(null,#{user.username},#{user.password},#{user.account})
+		</foreach>
+	</insert>
+
+	<delete id="batchDeleteUser">
+		DELETE FROM tb_user WHERE id IN (
+		<foreach collection="ids" item="id" separator=",">
+			#{id}
+		</foreach>
+		)
+	</delete>
+
+	<select id="getUserByLike" resultMap="userMap">
+		SELECT * FROM tb_user WHERE 1=1
+		<if test="un != null">
+			AND username LIKE '%${un}%'
+		</if>
+	</select>
 </mapper>

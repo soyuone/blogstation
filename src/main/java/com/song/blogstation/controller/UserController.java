@@ -1,6 +1,8 @@
 package com.song.blogstation.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -323,6 +325,100 @@ public class UserController {
 			log.error(e.getLocalizedMessage(), e);
 			resultMap.put("code", 500);
 			resultMap.put("result", "使用注解式查询用户异常，可能是网络原因");
+		}
+		return resultMap;
+	}
+
+	/**
+	 * <p>
+	 * Description:[批量添加用户]
+	 * </p>
+	 * Created by [songyushi] [2017年2月20日] Midified by [修改人] [修改时间]
+	 *
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/batch/insertuser", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> batchInsertUser(HttpServletRequest request) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			// 查询
+			List<UserBean> users = new ArrayList<UserBean>();
+			for (int i = 0; i < 5; i++) {
+				String username = "晴天" + i;
+				UserBean ub = new UserBean(username, "2000", 10.10);
+				users.add(ub);
+			}
+
+			resultMap = userService.insertBatchUser(users);
+		}
+		catch (Exception e) {
+			log.error(e.getLocalizedMessage(), e);
+			resultMap.put("code", 500);
+			resultMap.put("result", "批量添加用户异常，可能是网络原因");
+		}
+		return resultMap;
+	}
+
+	/**
+	 * <p>
+	 * Description:[批量删除用户]
+	 * </p>
+	 * Created by [songyushi] [2017年2月20日] Midified by [修改人] [修改时间]
+	 *
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/batch/deleteuser", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> batchDeleteUser(HttpServletRequest request) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			String ids = request.getParameter("ids");
+
+			String[] idArray = ids.split(",");
+			List<Integer> idList = new ArrayList<Integer>();
+			for (int i = 0; i < idArray.length; i++) {
+				idList.add(Integer.parseInt(idArray[i]));
+			}
+
+			resultMap = userService.deleteBatchUser(idList);
+		}
+		catch (Exception e) {
+			log.error(e.getLocalizedMessage(), e);
+			resultMap.put("code", 500);
+			resultMap.put("result", "批量删除用户异常，可能是网络原因");
+		}
+		return resultMap;
+	}
+
+	/**
+	 * <p>
+	 * Description:[根据用户名模糊查询用户]
+	 * </p>
+	 * Created by [songyushi] [2017年2月20日] Midified by [修改人] [修改时间]
+	 *
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/getuser/like", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getUserByLike(HttpServletRequest request) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			String username = request.getParameter("username");
+
+			// 查询
+			resultMap = userService.getUserByLike(username);
+		}
+		catch (Exception e) {
+			log.error(e.getLocalizedMessage(), e);
+			resultMap.put("code", 500);
+			resultMap.put("result", "模糊查询用户异常，可能是网络原因");
 		}
 		return resultMap;
 	}

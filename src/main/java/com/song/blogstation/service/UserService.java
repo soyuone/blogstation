@@ -1,5 +1,6 @@
 package com.song.blogstation.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.song.blogstation.beans.UserBean;
@@ -139,4 +140,39 @@ public interface UserService {
 	 */
 	public Map<String, Object> getAllUserAccountAnnotation() throws Exception;
 
+	/**
+	 * <p>
+	 * Description:[批量添加用户]
+	 * </p>
+	 * Created by [songyushi] [2017年2月20日] Midified by [修改人] [修改时间]
+	 *
+	 * @param users
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> insertBatchUser(List<UserBean> users) throws Exception;
+
+	/**
+	 * <p>
+	 * Description:[批量删除用户]
+	 * </p>
+	 * Created by [songyushi] [2017年2月20日] Midified by [修改人] [修改时间]
+	 *
+	 * @param ids
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> deleteBatchUser(List<Integer> ids) throws Exception;
+
+	/**
+	 * <p>
+	 * Description:[根据用户名模糊查询用户]
+	 * </p>
+	 * Created by [songyushi] [2017年2月20日] Midified by [修改人] [修改时间]
+	 *
+	 * @param username
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> getUserByLike(String username) throws Exception;
 }
