@@ -1,10 +1,13 @@
 package com.song.blogstation.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -121,8 +124,31 @@ public interface UserMapper {
 	 * @return
 	 */
 	@Select(" SELECT * FROM tb_user WHERE id=#{id} ")
-	@Results({
-		@Result(),
-	})
+	@Results({ @Result(id = true, property = "id", column = "id", javaType = Integer.class),
+			@Result(property = "username", column = "username", javaType = String.class),
+			@Result(property = "password", column = "password", javaType = String.class),
+			@Result(property = "account", column = "account", javaType = Double.class) })
 	public UserBean getUserByIdAnnotation(@Param("id") Integer id);
+
+	/**
+	 * <p>
+	 * Description:[查询所有用户-传统方式]
+	 * </p>
+	 * Created by [songyushi] [2017年2月20日] Midified by [修改人] [修改时间]
+	 *
+	 * @return
+	 */
+	public List<UserBean> getAllUserAccountTradition();
+
+	/**
+	 * <p>
+	 * Description:[查询所有用户-注解方式]
+	 * </p>
+	 * Created by [songyushi] [2017年2月20日] Midified by [修改人] [修改时间]
+	 *
+	 * @return
+	 */
+	@Select(" SELECT * FROM tb_user ")
+	@ResultMap("userMap")
+	public List<UserBean> getAllUserAccountAnnotation();
 }

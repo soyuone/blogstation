@@ -37,4 +37,9 @@
 		SELECT * FROM
 		tb_user WHERE id=#{id}
 	</select>
+
+	<select id="getAllUserAccountTradition" resultMap="userMap">
+		SELECT * FROM
+		tb_user
+	</select>
 </mapper>

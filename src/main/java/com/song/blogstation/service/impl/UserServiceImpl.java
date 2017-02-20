@@ -1,6 +1,7 @@
 package com.song.blogstation.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -122,6 +123,82 @@ public class UserServiceImpl implements UserService {
 		else {
 			resultMap.put("code", 500);
 			resultMap.put("result", "使用注解方式删除用户失败");
+		}
+		return resultMap;
+	}
+
+	@Override
+	public Map<String, Object> getUserByIdTradition(Integer id) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		UserBean user = um.getUserByIdTradition(id);
+		if (null != user) {
+			// 人为制造异常，验证事务回滚
+			// int a = 2/0;
+			resultMap.put("code", 200);
+			resultMap.put("result", "使用传统方式查询用户成功");
+			resultMap.put("data", user);
+		}
+		else {
+			resultMap.put("code", 500);
+			resultMap.put("result", "使用传统方式查询用户失败");
+			resultMap.put("data", user);
+		}
+		return resultMap;
+	}
+
+	@Override
+	public Map<String, Object> getUserByIdAnnotation(Integer id) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		UserBean user = um.getUserByIdAnnotation(id);
+		if (null != user) {
+			// 人为制造异常，验证事务回滚
+			// int a = 2/0;
+			resultMap.put("code", 200);
+			resultMap.put("result", "使用注解方式查询用户成功");
+			resultMap.put("data", user);
+		}
+		else {
+			resultMap.put("code", 500);
+			resultMap.put("result", "使用注解方式查询用户失败");
+			resultMap.put("data", user);
+		}
+		return resultMap;
+	}
+
+	@Override
+	public Map<String, Object> getAllUserAccountTradition() throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<UserBean> list = um.getAllUserAccountTradition();
+		if (null != list && list.size() > 0) {
+			// 人为制造异常，验证事务回滚
+			// int a = 2/0;
+			resultMap.put("code", 200);
+			resultMap.put("result", "使用传统方式查询用户成功");
+			resultMap.put("data", list);
+		}
+		else {
+			resultMap.put("code", 500);
+			resultMap.put("result", "使用传统方式查询用户失败");
+			resultMap.put("data", list);
+		}
+		return resultMap;
+	}
+
+	@Override
+	public Map<String, Object> getAllUserAccountAnnotation() throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<UserBean> list = um.getAllUserAccountAnnotation();
+		if (null != list && list.size() > 0) {
+			// 人为制造异常，验证事务回滚
+			// int a = 2/0;
+			resultMap.put("code", 200);
+			resultMap.put("result", "使用注解方式查询用户成功");
+			resultMap.put("data", list);
+		}
+		else {
+			resultMap.put("code", 500);
+			resultMap.put("result", "使用注解方式查询用户失败");
+			resultMap.put("data", list);
 		}
 		return resultMap;
 	}

@@ -180,7 +180,7 @@ public class UserController {
 		// 接收参数
 		String id = request.getParameter("id");
 		try {
-			// 修改
+			// 删除
 			resultMap = userService.deleteUserTradition(Integer.parseInt(id));
 		}
 		catch (Exception e) {
@@ -208,7 +208,7 @@ public class UserController {
 		// 接收参数
 		String id = request.getParameter("id");
 		try {
-			// 修改
+			// 删除
 			resultMap = userService.deleteUserAnnotation(Integer.parseInt(id));
 		}
 		catch (Exception e) {
@@ -218,4 +218,113 @@ public class UserController {
 		}
 		return resultMap;
 	}
+
+	/**
+	 * <p>
+	 * Description:[查询用户-传统方式]
+	 * </p>
+	 * Created by [songyushi] [2017年2月17日] Midified by [修改人] [修改时间]
+	 *
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/getuserbyid/tradition", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getUserByIdTradition(HttpServletRequest request) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		// 接收参数
+		String id = request.getParameter("id");
+		try {
+			// 查询
+			resultMap = userService.getUserByIdTradition(Integer.parseInt(id));
+		}
+		catch (Exception e) {
+			log.error(e.getLocalizedMessage(), e);
+			resultMap.put("code", 500);
+			resultMap.put("result", "使用传统方式查询用户异常，可能是网络原因");
+		}
+		return resultMap;
+	}
+
+	/**
+	 * <p>
+	 * Description:[查询用户-注解方式]
+	 * </p>
+	 * Created by [songyushi] [2017年2月17日] Midified by [修改人] [修改时间]
+	 *
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/getuserbyid/annotation", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getUserByIdAnnotation(HttpServletRequest request) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		// 接收参数
+		String id = request.getParameter("id");
+		try {
+			// 查询
+			resultMap = userService.getUserByIdAnnotation(Integer.parseInt(id));
+		}
+		catch (Exception e) {
+			log.error(e.getLocalizedMessage(), e);
+			resultMap.put("code", 500);
+			resultMap.put("result", "使用注解式查询用户异常，可能是网络原因");
+		}
+		return resultMap;
+	}
+
+	/**
+	 * <p>
+	 * Description:[查询所有用户-传统方式]
+	 * </p>
+	 * Created by [songyushi] [2017年2月17日] Midified by [修改人] [修改时间]
+	 *
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/getalluser/tradition", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getAllUserAccountTradition(HttpServletRequest request) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			// 查询
+			resultMap = userService.getAllUserAccountTradition();
+		}
+		catch (Exception e) {
+			log.error(e.getLocalizedMessage(), e);
+			resultMap.put("code", 500);
+			resultMap.put("result", "使用传统方式查询用户异常，可能是网络原因");
+		}
+		return resultMap;
+	}
+
+	/**
+	 * <p>
+	 * Description:[查询所有用户-注解方式]
+	 * </p>
+	 * Created by [songyushi] [2017年2月17日] Midified by [修改人] [修改时间]
+	 *
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/getalluser/annotation", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getAllUserAccountAnnotation(HttpServletRequest request) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			// 查询
+			resultMap = userService.getAllUserAccountAnnotation();
+		}
+		catch (Exception e) {
+			log.error(e.getLocalizedMessage(), e);
+			resultMap.put("code", 500);
+			resultMap.put("result", "使用注解式查询用户异常，可能是网络原因");
+		}
+		return resultMap;
+	}
+
 }

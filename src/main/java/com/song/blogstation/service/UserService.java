@@ -93,4 +93,50 @@ public interface UserService {
 	 */
 	public Map<String, Object> deleteUserAnnotation(Integer id) throws Exception;
 
+	/**
+	 * <p>
+	 * Description:[根据ID查询用户-传统方式]
+	 * </p>
+	 * Created by [songyushi] [2017年2月20日] Midified by [修改人] [修改时间]
+	 *
+	 * @param id
+	 * @return
+	 */
+	public Map<String, Object> getUserByIdTradition(Integer id) throws Exception;
+
+	/**
+	 * <p>
+	 * Description:[根据ID查询用户-注解方式]
+	 * </p>
+	 * Created by [songyushi] [2017年2月20日] Midified by [修改人] [修改时间]
+	 *
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> getUserByIdAnnotation(Integer id) throws Exception;
+
+	/**
+	 * <p>
+	 * Description:[查询所有用户-传统方式]
+	 * </p>
+	 * Created by [songyushi] [2017年2月20日] Midified by [修改人] [修改时间]
+	 *
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> getAllUserAccountTradition() throws Exception;
+
+	/**
+	 * <p>
+	 * Description:[查询所有用户-注解方式]
+	 * </p>
+	 * Created by [songyushi] [2017年2月20日] Midified by [修改人] [修改时间]
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> getAllUserAccountAnnotation() throws Exception;
+
 }
