@@ -7,6 +7,12 @@
 		<result property="username" column="username" javaType="String" />
 		<result property="password" column="password" javaType="String" />
 		<result property="account" column="account" javaType="Double" />
+		<collection property="addressList" column="id" select="getUserAddress"></collection>
+	</resultMap>
+
+	<resultMap type="AddressBean" id="addressMap">
+		<id property="id" column="id" javaType="Integer" />
+		<result property="address" column="address" javaType="String" />
 	</resultMap>
 
 	<!-- 在各种标签中的id属性必须和接口中的方法名相同 ， id属性值必须是唯一的，不能够重复使用。parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型 -->
@@ -63,5 +69,25 @@
 		<if test="un != null">
 			AND username LIKE '%${un}%'
 		</if>
+	</select>
+
+	<select id="getUserByLikeParamMap" parameterType="java.util.Map"
+		resultMap="userMap">
+		SELECT * FROM tb_user WHERE 1=1
+		<if test="username != null">
+			AND username LIKE '%${username}%'
+		</if>
+		<if test="password != null">
+			AND password LIKE '%${password}%'
+		</if>
+		<if test="account != null">
+			AND account LIKE '%${account}%'
+		</if>
+	</select>
+
+	<select id="getUserAddress"
+		resultMap="com.song.blogstation.mapper.AddressMapper.addressMap">
+		SELECT * FROM tb_address
+		WHERE fk_user_id = #{id}
 	</select>
 </mapper>

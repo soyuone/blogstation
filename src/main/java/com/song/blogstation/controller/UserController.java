@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -423,4 +424,44 @@ public class UserController {
 		return resultMap;
 	}
 
+	/**
+	 * <p>
+	 * Description:[模糊查询-map]
+	 * </p>
+	 * Created by [songyushi] [2017年2月21日] Midified by [修改人] [修改时间]
+	 *
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/getuser/paramlike", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getUserByLikeParamMap(HttpServletRequest request) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			String account = request.getParameter("account");
+
+			// 是否为空
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			if (StringUtils.isNotBlank(username)) {
+				paramMap.put("username", username);
+			}
+			if (StringUtils.isNotBlank(password)) {
+				paramMap.put("password", password);
+			}
+			if (StringUtils.isNotBlank(account)) {
+				paramMap.put("account", account);
+			}
+
+			resultMap = userService.getUserByLikeParamMap(paramMap);
+		}
+		catch (Exception e) {
+			log.error(e.getLocalizedMessage(), e);
+			resultMap.put("code", 500);
+			resultMap.put("result", "模糊查询用户异常，可能是网络原因");
+		}
+		return resultMap;
+	}
 }

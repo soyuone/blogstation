@@ -252,4 +252,21 @@ public class UserServiceImpl implements UserService {
 		return resultMap;
 	}
 
+	@Override
+	public Map<String, Object> getUserByLikeParamMap(Map<String, Object> paramMap) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<UserBean> userList = um.getUserByLikeParamMap(paramMap);
+		if (null != userList && userList.size() > 0) {
+			resultMap.put("code", 200);
+			resultMap.put("result", "模糊查询用户成功");
+			resultMap.put("data", userList);
+		}
+		else {
+			resultMap.put("code", 500);
+			resultMap.put("result", "没有对应的用户信息，请先添加");
+			resultMap.put("data", userList);
+		}
+		return resultMap;
+	}
+
 }

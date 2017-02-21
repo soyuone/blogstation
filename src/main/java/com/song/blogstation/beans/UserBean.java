@@ -1,6 +1,7 @@
 package com.song.blogstation.beans;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -30,19 +31,18 @@ public class UserBean implements Serializable {
 
 	private Double account;
 
+	private List<AddressBean> addressList;
+
 	public UserBean() {
-		super();
 	}
 
 	public UserBean(String username, String password, Double account) {
-		super();
 		this.username = username;
 		this.password = password;
 		this.account = account;
 	}
 
 	public UserBean(Integer id, String username, String password, Double account) {
-		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -79,6 +79,14 @@ public class UserBean implements Serializable {
 
 	public void setAccount(Double account) {
 		this.account = account;
+	}
+
+	public List<AddressBean> getAddressList() {
+		return addressList;
+	}
+
+	public void setAddressList(List<AddressBean> addressList) {
+		this.addressList = addressList;
 	}
 
 	@Override

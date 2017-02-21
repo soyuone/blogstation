@@ -175,4 +175,15 @@ public interface UserService {
 	 * @throws Exception
 	 */
 	public Map<String, Object> getUserByLike(String username) throws Exception;
+
+	/**
+	 * <p>
+	 * Description:[模糊查询-map]
+	 * </p>
+	 * Created by [songyushi] [2017年2月21日] Midified by [修改人] [修改时间]
+	 *
+	 * @param paramMap
+	 * @return
+	 */
+	public Map<String, Object> getUserByLikeParamMap(Map<String, Object> paramMap);
 }

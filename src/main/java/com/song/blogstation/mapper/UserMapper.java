@@ -1,6 +1,7 @@
 package com.song.blogstation.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -184,5 +185,16 @@ public interface UserMapper {
 	 * @return
 	 */
 	public List<UserBean> getUserByLike(@Param("un") String username);
+
+	/**
+	 * <p>
+	 * Description:[模糊查询-map]
+	 * </p>
+	 * Created by [songyushi] [2017年2月21日] Midified by [修改人] [修改时间]
+	 *
+	 * @param paramMap
+	 * @return
+	 */
+	public List<UserBean> getUserByLikeParamMap(Map<String, Object> paramMap);
 
 }
