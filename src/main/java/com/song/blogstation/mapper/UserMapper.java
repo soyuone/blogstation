@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Repository;
 
 import com.song.blogstation.beans.UserBean;
 
@@ -28,6 +29,7 @@ import com.song.blogstation.beans.UserBean;
  * @author (lastest modification by $Author$)
  * @since 20100901
  */
+@Repository("userMapper")
 public interface UserMapper {
 
 	/**

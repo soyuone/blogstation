@@ -7,7 +7,7 @@
 		<result property="username" column="username" javaType="String" />
 		<result property="password" column="password" javaType="String" />
 		<result property="account" column="account" javaType="Double" />
-		<collection property="addressList" column="id" select="getUserAddress"></collection>
+		<!-- <collection property="addressList" column="id" select="getUserAddress"></collection> -->
 	</resultMap>
 
 	<resultMap type="AddressBean" id="addressMap">
@@ -85,9 +85,9 @@
 		</if>
 	</select>
 
-	<select id="getUserAddress"
+<!-- 	<select id="getUserAddress"
 		resultMap="com.song.blogstation.mapper.AddressMapper.addressMap">
 		SELECT * FROM tb_address
 		WHERE fk_user_id = #{id}
-	</select>
+	</select> -->
 </mapper>

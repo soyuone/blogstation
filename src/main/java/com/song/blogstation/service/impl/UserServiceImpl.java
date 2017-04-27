@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.song.blogstation.beans.UserBean;
 import com.song.blogstation.mapper.UserMapper;
@@ -31,12 +32,13 @@ public class UserServiceImpl implements UserService {
 	@Resource
 	private UserMapper um;
 
+	@Transactional
 	@Override
 	public Map<String, Object> insertUserTradition(UserBean user) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		if (um.insertUserTradition(user) > 0) {
 			// 人为制造异常，验证事务回滚
-			// int a = 2/0;
+			int a = 2 / 0;
 			resultMap.put("code", 200);
 			resultMap.put("result", "使用传统方式添加用户成功");
 		}
@@ -47,6 +49,7 @@ public class UserServiceImpl implements UserService {
 		return resultMap;
 	}
 
+	@Transactional
 	@Override
 	public Map<String, Object> insertUserUserAnnotation(UserBean user) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -63,6 +66,7 @@ public class UserServiceImpl implements UserService {
 		return resultMap;
 	}
 
+	@Transactional
 	@Override
 	public Map<String, Object> updateUserTradition(UserBean user, Integer id) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -79,12 +83,13 @@ public class UserServiceImpl implements UserService {
 		return resultMap;
 	}
 
+	@Transactional
 	@Override
 	public Map<String, Object> updateUserAnnotation(UserBean user, Integer id) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		if (um.updateUserAnnotation(user, id) > 0) {
 			// 人为制造异常，验证事务回滚
-			// int a = 2/0;
+			int a = 2 / 0;
 			resultMap.put("code", 200);
 			resultMap.put("result", "使用注解方式修改用户成功");
 		}
@@ -95,6 +100,7 @@ public class UserServiceImpl implements UserService {
 		return resultMap;
 	}
 
+	@Transactional
 	@Override
 	public Map<String, Object> deleteUserTradition(Integer id) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -111,6 +117,7 @@ public class UserServiceImpl implements UserService {
 		return resultMap;
 	}
 
+	@Transactional
 	@Override
 	public Map<String, Object> deleteUserAnnotation(Integer id) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -203,6 +210,7 @@ public class UserServiceImpl implements UserService {
 		return resultMap;
 	}
 
+	@Transactional
 	@Override
 	public Map<String, Object> insertBatchUser(List<UserBean> users) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -219,6 +227,7 @@ public class UserServiceImpl implements UserService {
 		return resultMap;
 	}
 
+	@Transactional
 	@Override
 	public Map<String, Object> deleteBatchUser(List<Integer> ids) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
